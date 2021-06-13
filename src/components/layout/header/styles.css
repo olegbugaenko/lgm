@@ -1,0 +1,12 @@
+.header {
+    width: 100%;
+    border-bottom: 1px solid #f0f0f0;
+    background: rgba(17, 17, 17, 0.8);
+    color: #ffffff;
+    position: relative;
+}
+
+.resource-box {
+    padding: 10px;
+    border-left: 1px solid #3f3f3f;
+}

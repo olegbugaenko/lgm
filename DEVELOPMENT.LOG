@@ -1,0 +1,17 @@
+# Implement food (other) consumption
+# Autofill
+# Max level/qty
+# Researches
+
+# Consumed tools/materials (???)
+- Health/Happiness mechanism:
+[starting from 500 population need additional sources of health and happiness]
+[i.e Health debuff = 1/(1+Math.max(0, ((population - 500)/300))) - debuff to birthRate]
+[i.e Health debuff = 1/(1+Math.max(0, ((population - 500)/500)^0.75)) - debuff to effiency]
+[i.e Happiness debuff = 1/(1+Math.max(0, ((population - 500)/500)^0.75)) - debuff to effiency]
+For balance include mechanics that would consume more food for happiness/health
+- War:
+Starting from wheel and having at least one mine can build barracks. Each worker in barrack is a soldier.
+People from barracks consume x2 food
+People at war consume metal and wood. When metal and wood is over - battle is automatically paused.
+As battle finished - troops going automatically to next battle, until territory can be captured.

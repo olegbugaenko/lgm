@@ -1,0 +1,19 @@
+.leftSideBar{
+    width: 120px;
+    background-color: rgba(17,17,17,0.85);
+    color: #fff;
+}
+
+.menuItem {
+    cursor: pointer;
+    color: #fff;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.menuItem.selected,
+.menuItem:hover {
+    background-color: rgba(17,17,17,0.9);
+}
+
+

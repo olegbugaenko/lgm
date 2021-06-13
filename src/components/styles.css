@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'Baloo Tammudu 2';
+    src: local('Baloo Tammudu 2'), url(./../assets/fonts/BalooTammudu2-Regular.ttf) format('truetype');
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Baloo Tammudu 2';
+    font-size: 15px;
+}
+
+.inline-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+content {
+    display: flex;
+}
+
+.content {
+    flex: 1;
+    position: relative;
+    padding: 20px;
+}
+
+button {
+    padding: 5px 10px;
+    border-radius: 3px;
+    border: 1px solid #f0f0f0;
+    outline: none;
+    cursor: pointer;
+    line-height: 26px;
+    height: 28px;
+}
+
+button.main-action {
+    background-color: #28af37;
+    color: #ffffff;
+    border: #34b167;
+}
+
+button.main-action:hover {
+    background-color: #48cf57;
+    color: #ffffff;
+    border: #34b167;
+}
+
+button.is-disabled {
+    background-color: #888;
+    color: #ffffff;
+    pointer-events: none;
+}
+
+input[type="text"],
+input[type="number"]
+{
+    max-width: 120px;
+    line-height: 26px;
+    height: 28px;
+    color: #fff;
+    background: #111;
+    /* inset: unset; */
+    border: 1px solid #393939;
+    padding: 5px;
+    padding-top: 11px;
+    border-radius: 3px;
+    margin: 0 3px;
+}
+
+
+.bg-img {
+    position: fixed;
+    background: #000;
+    width: 100vw;
+    height: 100vh;
+}
+
+.bg-img img {
+    min-width: 100%;
+    min-height: 100%;
+    opacity: 0.9;
+}
+
+.app {
+    position: relative;
+}
+
+.tooltip {
+    z-index: 1000 !important;
+    position: absolute !important;
+    opacity: 1;
+}
+
+
+/** SHARED COMPONENTS **/
+
+/** bar **/
+
+.bar-box {
+    height: 4px;
+    border: 1px solid #3f3f3f;
+    background: #888888;
+    position: relative;
+    min-width: 100px;
+}
+
+.bar-box .bar-progress {
+    background-color: #28af37;
+    height: 100%;
+}
+
+.notifications-container {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+}
+
+.notifications-container .message {
+    margin: 10px;
+    border: 1px solid #111111;
+    background-color: #28af37;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #fff;
+}

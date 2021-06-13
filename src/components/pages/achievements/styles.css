@@ -1,0 +1,46 @@
+.research-box{
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #3f3f3f;
+    border-radius: 5px;
+    width: 300px;
+    background-color: rgba(17,17,17,0.85);
+    color: #fff;
+}
+
+.achievements {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.research-box .inline-container {
+    justify-content: space-between;
+}
+
+.research-box .inline-container .left {
+    width: 60%;
+}
+.research-box .inline-container .left .description {
+    margin: 5px;
+    font-size: 13px;
+}
+
+
+.resourceContainer span {
+    font-size: 13px;
+    margin-right: 5px;
+}
+
+.requirement {
+    font-size: 13px;
+    margin: 0 5px;
+}
+
+.requirement.isMissing {
+    color: #f52828;
+}
+
+.title-item {
+    font-weight: bold;
+}
