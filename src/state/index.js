@@ -15,6 +15,7 @@ import BuildingSaga from "./buildings/saga";
 import ResearchSaga from "./researches/saga";
 import ExpeditionSaga from "./expedition/saga";
 import UISaga from './navigation/saga';
+import WarSaga from "./war/saga";
 
 const {
     createReduxHistory,
@@ -62,6 +63,7 @@ sagaMiddleware.run(BuildingSaga.watch);
 sagaMiddleware.run(ResearchSaga.watch);
 sagaMiddleware.run(ExpeditionSaga.watch);
 sagaMiddleware.run(UISaga.handleNotifications);
+sagaMiddleware.run(WarSaga.watch);
 
 const history = createReduxHistory(store);
 const persistor = persistStore(store);

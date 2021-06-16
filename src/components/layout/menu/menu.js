@@ -21,6 +21,10 @@ const Menu = ({page, navigate}) => {
             {
                 name: 'Achievements',
                 id: 'achievements'
+            },
+            {
+                name: 'War',
+                id: 'war'
             }
         ].map(item => (<div
             className={classnames(

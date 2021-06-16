@@ -6,10 +6,21 @@ import {MODIFY_RESOURCE} from "../resources/actions";
 
 class ResearchSaga {
 
-    static applyProductionEffect({buildingId, value, researches }) {
+    static applyProductionEffect({buildingId, value, researches, tags }) {
         // console.log(Object.values(researches));
         const multiplier = Object.values(researches)
-            .filter(r => r.effect?.includes(buildingId) || r.effect?.includes("all"))
+            .filter(r => {
+                if(r.effect?.includes("all")) {
+                    return true;
+                }
+                if(r.effect?.includes(buildingId)){
+                    return true;
+                }
+                if(r.effect?.find(item => tags?.includes(item))) {
+                    return true;
+                }
+                return false;
+            })
             .reduce((accum, item) => accum * item.production, 1);
         // console.log('multp', multiplier);
         return ResourceHelper.multiply(value, multiplier);
@@ -97,7 +108,7 @@ class ResearchSaga {
                 }
                 return rs;
             });
-            console.log('rrs', research);
+            // console.log('rrs', research);
             if(research.isAvailable && research.buildable.isAvailable) {
                 //double-check to make sure we have enought resources
                 const enought = ResourceHelper.mapEnought(resources, research.cost);

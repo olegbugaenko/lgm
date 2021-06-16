@@ -1,0 +1,4 @@
+export const START_BATTLE = 'START_BATTLE';
+export const STOP_BATTLE = 'STOP_BATTLE';
+export const SET_BATTLE_STATS = 'SET_BATTLE_STATS';
+export const UPDATE_PROGRESS = 'UPDATE_WAR_PROGRESS';

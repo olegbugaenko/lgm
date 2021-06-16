@@ -9,6 +9,13 @@
 [i.e Health debuff = 1/(1+Math.max(0, ((population - 500)/300))) - debuff to birthRate]
 [i.e Health debuff = 1/(1+Math.max(0, ((population - 500)/500)^0.75)) - debuff to effiency]
 [i.e Happiness debuff = 1/(1+Math.max(0, ((population - 500)/500)^0.75)) - debuff to effiency]
+
+FORMULA:
+A = happiness/Math.max(population - 100, 1);
+
+Math.min(1, 0.3 + A/(1 + A))
+
+
 For balance include mechanics that would consume more food for happiness/health
 - War:
 Starting from wheel and having at least one mine can build barracks. Each worker in barrack is a soldier.

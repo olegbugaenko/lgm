@@ -14,7 +14,7 @@ class ExpeditionSaga {
             progress.progress = 0;
             progress.subLevelsProgress++;
             /* grant some sweat cookies */
-            const lootLevel = amount => Math.round(amount * (progress.level + 1) * Math.pow(progress.progressPerTick/2, 0.4));
+            const lootLevel = (amount, pow = 0.4) => Math.round(amount * (progress.level + 1) * Math.pow(progress.progressPerTick/2, pow));
             const add = {};
             const rand = Math.random()*100;
             switch (true) {
@@ -34,12 +34,12 @@ class ExpeditionSaga {
                     add.population = lootLevel(4);
                     break;
                 case rand < 83:
-                    add.territory = lootLevel(1);
+                    add.territory = lootLevel(1, 0.2);
                     break;
                 default:
                     break;
             }
-            console.log('rnd', rand, add);
+            // console.log('rnd', rand, add);
             for(let resource in add) {
                 if(resource !== 'territory') {
                     yield put({
@@ -62,7 +62,7 @@ class ExpeditionSaga {
             /*progress.progress = 0;
             progress.subLevelsProgress = 0;*/
             progress.territoryGain += Math.round(5*Math.pow((progress.level+1), 1.5));
-            yield put(setExpeditionMapLevel(progress.level));
+            yield put(setExpeditionMapLevel(progress.maxLevel));
             yield put(updateValues({ territoryGain: progress.territoryGain }));
 
         } else {

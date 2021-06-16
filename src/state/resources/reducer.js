@@ -62,10 +62,10 @@ const resourcesReducer = (state = initialState, action) => {
         case Actions.MODIFY_RESOURCE:
             if(!action.payload.resource || !(action.payload.resource in state)) return state;
             const rs = state[action.payload.resource];
-            console.log('rrs', rs, {
+            /*console.log('rrs', rs, {
                 ...rs,
                 value: Math.min(rs.value + action.payload.value, rs.max),
-            },action.payload.value);
+            },action.payload.value);*/
             return {
                 ...state,
                 [action.payload.resource]: {

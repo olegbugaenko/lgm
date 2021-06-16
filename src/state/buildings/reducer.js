@@ -18,11 +18,13 @@ const buildingsReducer = (state = initialState, action) => {
                     obj[one.id] = {
                         ...one,
                         level: 0,
-                        workers: 1,
+                        workers: 0,
                         resourcesToBuild: {},
                         productionPerWorker: 0,
                         productionTotal: {},
-                        ...(one.id in state.list ? state.list[one.id] : {})
+                        ...(one.id in state.list ? state.list[one.id] : {}),
+                        sort: one.sort,
+                        name: one.name,
                     }
                 //}
             });
@@ -44,6 +46,8 @@ const buildingsReducer = (state = initialState, action) => {
                 ...state,
                 list: {...newState},
                 territoryUsed: action.payload.territoryUsed,
+                healthFactor: action.payload.healthFactor,
+                happinessFactor: action.payload.happinessFactor,
             }
         case Actions.UPDATE_BUILDING_LEVEL:
             return {

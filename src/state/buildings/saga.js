@@ -63,6 +63,7 @@ class BuildingSaga {
                 buildingId,
                 value: income,
                 researches,
+                tags: buildingInfo.tags,
             });
 
             income = AchievementsSaga.applyProductionEffect({
@@ -87,11 +88,19 @@ class BuildingSaga {
             });
 
             buildings[buildingId].qty = buildings[buildingId].qty || 1;
-            let cost = buildingInfo.resourcesToBuild(buildings[buildingId].level);
+            let costMultiplier = 1/Math.pow(
+                1.01,
+                buildings[buildingId].level*Math.min(1,(researches.architecture?.level || 0))
+            );
+            let cost = ResourceHelper.multiply(buildingInfo.resourcesToBuild(buildings[buildingId].level), costMultiplier);
             const territoryReq = buildingInfo.territoryRequired * buildings[buildingId].qty;
             if(buildings[buildingId].qty && buildings[buildingId].qty > 1) {
                 for(let lvl = buildings[buildingId].level+1; lvl < buildings[buildingId].level + buildings[buildingId].qty; lvl++) {
-                    cost = ResourceHelper.mergeValues(cost, buildingInfo.resourcesToBuild(lvl))
+                    let costMultiplier = 1/Math.pow(
+                        1.01,
+                        lvl*Math.min(1,(researches.architecture?.level || 0))
+                    );
+                    cost = ResourceHelper.mergeValues(cost, ResourceHelper.multiply(buildingInfo.resourcesToBuild(lvl), costMultiplier))
                 }
             }
 
@@ -114,13 +123,25 @@ class BuildingSaga {
             // result.total.territoryUsed += buildingInfo.territoryRequired * buildings[buildingId].level;
 
         }
+        const { happiness, health } = result.total.income;
+        const happA = 2*happiness/Math.max(1, resources.population - 100);
+        const healA = 3*health/Math.max(1, resources.population - 250);
+
+        let healthFactor = Math.min(1, 0.3 + healA/(1+healA));
+        let happinessFactor = 0.35 + happA/(1+happA);
+        // console.log('happiness & health', happinessFactor, healthFactor);
+        healthFactor = Math.max(healthFactor, 0.4);
+        happinessFactor = Math.max(happinessFactor, 0.4);
+        result.total.income = ResourceHelper.multiply(result.total.income, healthFactor*happinessFactor);
+        result.total.happinessFactor = happinessFactor;
+        result.total.healthFactor = healthFactor;
         yield put({
             type: UPDATE_PROGRESS_PER_TICK,
             payload: result.total.income?.expedition,
         });
         yield put({
             type: SET_BUILDINGS_META,
-            payload: {buildings: result.buildings, territoryUsed: result.total.territoryUsed},
+            payload: {buildings: result.buildings, territoryUsed: result.total.territoryUsed, healthFactor, happinessFactor},
         })
         return result;
     }

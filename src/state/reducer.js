@@ -8,6 +8,7 @@ import buildingsReducer from "./buildings/reducer";
 import researchReducer from "./researches/reducer";
 import achievementReducer from "./achievements/reducer";
 import expeditionsReducer from "./expedition/reducer";
+import warReducer from "./war/reducer";
 
 const appReducer = combineReducers({
     resources: resourcesReducer,
@@ -16,6 +17,7 @@ const appReducer = combineReducers({
     researches: researchReducer,
     achievements: achievementReducer,
     expedition: expeditionsReducer,
+    war: warReducer,
 })
 
 export default appReducer;

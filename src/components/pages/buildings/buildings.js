@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import classnames from 'classnames';
 import Bar from './../../shared/bar';
+import BigNumber from './../../shared/BigNumber';
 import './styles.css';
 
 const resourcesRequiredArea = (resources) => {
@@ -9,7 +10,7 @@ const resourcesRequiredArea = (resources) => {
             'resourceContainer',
             {isUnavailable: !one.isEnough}
             )
-        }><span className={'resourceTitle'}>{one.title}</span><span className={'need'}>{Math.round(one.required)}</span></div>))
+        }><span className={'resourceTitle'}>{one.title}</span><span className={'need'}>{<BigNumber value={Math.round(one.required)}/>}</span></div>))
 }
 
 const workersController = (building, onChange, onAutofillSet) => {

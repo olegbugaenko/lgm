@@ -21,7 +21,8 @@ const navigationReducer = (state = initialState, action) => {
                 {
                     message: action.payload.message,
                     expiresAt: (new Date()).getTime() + action.payload.ttl,
-                    id: `${(new Date()).getTime()}-${Math.random()}`
+                    id: `${(new Date()).getTime()}-${Math.random()}`,
+                    type: action.payload.type,
                 }
             ];
             if(notif.length > 3) {

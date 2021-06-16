@@ -7,10 +7,11 @@ export const navigate = (page) => ({
     payload: { page }
 });
 
-export const postNotification = ({message, ttl = 3000}) => ({
+export const postNotification = ({message, ttl = 3000, type = 'success'}) => ({
     type: POST_NOTIFICATION,
     payload: {
         message,
         ttl,
+        type,
     }
 })

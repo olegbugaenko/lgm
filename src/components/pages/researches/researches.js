@@ -14,14 +14,15 @@ const resourcesRequiredArea = (resources) => {
 const ResearchesComponent = ({researches, research}) => {
     return (<div className={'researches'}>
             {researches.map(one => (<div className={'research-box'}>
+                <div className={'title-item'}>
+                    <span className={'buildingTitle'}>{one.name}</span>
+                    {' '}
+                    <span className={'buildingLevel'}>{one.level}</span>
+                    {one.maxQuantity && one.maxQuantity < 1.e+3 && (<span> of {one.maxQuantity}</span>)}
+                </div>
                 <div className={'inline-container'}>
                     <div className={'left'}>
-                        <div className={'title-item'}>
-                            <span className={'buildingTitle'}>{one.name}</span>
-                            {' '}
-                            <span className={'buildingLevel'}>{one.level}</span>
-                            {one.maxQuantity && one.maxQuantity < 1.e+3 && (<span> of {one.maxQuantity}</span>)}
-                        </div>
+
                         <div className={'description'}>
                             {one.description}
                         </div>

@@ -8,6 +8,7 @@ import {INIT_RESEARCHES} from "./researches/actions";
 import {INIT_ACHIEVEMENTS} from "./achievements/actions";
 import AchievementsSaga from "./achievements/saga";
 import {UPDATE_PROGRESS} from "./expedition/actions";
+import * as WarActions from "./war/actions";
 
 class MainSaga {
 
@@ -16,7 +17,9 @@ class MainSaga {
             yield put({type: INIT_BUILDINGS});
             yield put({type: INIT_RESEARCHES});
             yield put({type: INIT_ACHIEVEMENTS});
-            yield put({type: UPDATE_PROGRESS})
+            yield put({type: UPDATE_PROGRESS});
+            yield put({type: WarActions.UPDATE_PROGRESS});
+
             yield call(MainSaga.runTick);
             yield delay(1000);
         }
@@ -53,6 +56,7 @@ class MainSaga {
         const bArr = Object.values(buildings)
             .sort((a,b) => a.sort > b.sort ? 1 : (a.sort < b.sort ? -1 : 0));
         let i = bArr.length - 1;
+        console.log('labr: ', resources.population, maxLabour, workers, bArr[i].name);
         while(maxLabour - workers < 0) {
             let delta = Math.min(bArr[i].workers, workers - maxLabour);
             workers = workers - delta;
@@ -106,9 +110,10 @@ class MainSaga {
             food: -resources.population * 0.2,
         }
 
-        results.total.income.population = 0.004*Math.max(resources.population, 5);
+        results.total.income.population = 0.004*Math.max(resources.population, 5)
+            * Math.pow(results.total.happinessFactor, 1.5) * Math.pow(results.total.healthFactor, 2);
 
-        console.log('cons:', results.total.income.food, consumption.food);
+        // console.log('cons:', results.total.income.food, consumption.food);
 
         results.total.income = ResourceHelper.mergeValues(results.total.income, consumption);
         if(resources.food <= 0 && results.total.income.food <= 0) {

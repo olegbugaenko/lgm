@@ -122,10 +122,19 @@ input[type="number"]
     left: 10px;
 }
 
-.notifications-container .message {
+.notifications-container .message.success {
     margin: 10px;
     border: 1px solid #111111;
     background-color: #28af37;
+    border-radius: 5px;
+    padding: 10px 20px;
+    color: #fff;
+}
+
+.notifications-container .message.danger {
+    margin: 10px;
+    border: 1px solid #111111;
+    background-color: #af2723;
     border-radius: 5px;
     padding: 10px 20px;
     color: #fff;
